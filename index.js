@@ -5,12 +5,12 @@ const exphbs = require("express-handlebars")
 
 const app = express()
 
-app.engine('handlebars',exphbs.engine)
+app.engine('handlebars',exphbs.engine())
 app.set('view engine','handlebars')
 
 
 app.get('/',(requesicao,resposta)=>{
-    resposta.send("Olá mundo!")
+    resposta.render('home')
 })
 
 app.listen(3000,() =>{
