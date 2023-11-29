@@ -19,4 +19,4 @@ app.get('/',(requesicao,resposta)=>{
 
 app.listen(3000,() =>{
     console.log("servido rodando na porta 3000")
-})
+})  
