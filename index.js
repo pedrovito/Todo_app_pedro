@@ -20,8 +20,29 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 //rotas
-app.post('/criar', (requesicao, resposta) =>{
-    const descricao =requesicao.body.descricao
+
+app.post('/completar', (requisicao, resposta) =>{
+        const id = requisicao.body.id
+        
+        console.log(id)
+
+        const sql= `
+                update tarefas 
+                set completa ='1'
+                where id =${id}
+            `
+
+        conexao.query(sql ,(erro) => {
+            if (erro){
+                return console.log(erro)
+            }
+
+            resposta.redirect('/')
+
+        })
+    })
+app.post('/criar', (requisicao, resposta) =>{
+    const descricao =requisicao.body.descricao
     const completa = 0
     const sql =`
             INSERT INTO tarefas(descricao, completa)
@@ -36,7 +57,7 @@ app.post('/criar', (requesicao, resposta) =>{
         })
     })
 
-app.get('/',(requesicao,resposta)=>{
+app.get('/',(requisicao,resposta)=>{
 
     const sql = 'SELECT * FROM todo_app.tarefas;'
 
@@ -44,7 +65,7 @@ app.get('/',(requesicao,resposta)=>{
         if(erro){
             console.log(erro)
         }
-        console.log(dados)
+        
 
         const tarefas = dados.map((dado) =>{
             return{
