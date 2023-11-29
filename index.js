@@ -53,11 +53,13 @@ app.get('/',(requesicao,resposta)=>{
                 completa: dado.completa === 0 ? false : true
             }
             
-        })
-        console.log(tarefas)
-    })
 
-    resposta.render('home')
+
+        })
+        
+        resposta.render('home',{ tarefas })    
+
+    })
 })
 
 const conexao = mysql.createConnection({
