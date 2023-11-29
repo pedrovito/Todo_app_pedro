@@ -37,6 +37,26 @@ app.post('/criar', (requesicao, resposta) =>{
     })
 
 app.get('/',(requesicao,resposta)=>{
+
+    const sql = 'SELECT * FROM todo_app.tarefas;'
+
+    conexao.query(sql, (erro, dados) =>{
+        if(erro){
+            console.log(erro)
+        }
+        console.log(dados)
+
+        const tarefas = dados.map((dado) =>{
+            return{
+                id: dado.id,
+                descricao: dado.descricao,
+                completa: dado.completa === 0 ? false : true
+            }
+            
+        })
+        console.log(tarefas)
+    })
+
     resposta.render('home')
 })
 
