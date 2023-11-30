@@ -162,7 +162,7 @@ app.get('/ativas',(requisicao,resposta)=>{
 
 app.get('/',(requisicao,resposta)=>{
 
-    const sql = 'SELECT * FROM todo_app.tarefas;'
+    const sql = 'SELECT * FROM tarefas'
 
     conexao.query(sql, (erro, dados) =>{
         if(erro){
